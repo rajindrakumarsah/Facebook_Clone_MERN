@@ -14,8 +14,10 @@ import postRoutes from "./routes/posts.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
+
 import User from "./models/User.js";
 import Post from "./models/Post.js";
+//importing fake data
 import { users, posts } from "./data/index.js";
 
 /* CONFIGURATIONS */
@@ -45,6 +47,8 @@ const upload = multer({ storage });
 
 /* ROUTES WITH FILES */ //authentication 
 app.post("/auth/register", upload.single("picture"), register);
+
+//when we upload it will upload into the database and local also
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 /* ROUTES */

@@ -16,6 +16,7 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
+//validation schema
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -26,11 +27,13 @@ const registerSchema = yup.object().shape({
   picture: yup.string().required("required"),
 });
 
+//login schema
 const loginSchema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
 });
 
+//what will be initial value , that we need also to write as schema
 const initialValuesRegister = {
   firstName: "",
   lastName: "",
@@ -41,11 +44,13 @@ const initialValuesRegister = {
   picture: "",
 };
 
+//for actual login
 const initialValuesLogin = {
   email: "",
   password: "",
 };
 
+//form component
 const Form = () => {
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();

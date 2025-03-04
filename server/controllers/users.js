@@ -11,6 +11,7 @@ export const getUser = async (req, res) => {
   }
 };
 
+//get all friends
 export const getUserFriends = async (req, res) => {
   try {
     const { id } = req.params;
@@ -38,10 +39,10 @@ export const addRemoveFriend = async (req, res) => {
     const friend = await User.findById(friendId);
 
     if (user.friends.includes(friendId)) {
-      user.friends = user.friends.filter((id) => id !== friendId);
+      user.friends = user.friends.filter((id) => id !== friendId); //if friend is already there , then there should be option like remove friend
       friend.friends = friend.friends.filter((id) => id !== id);
     } else {
-      user.friends.push(friendId);
+      user.friends.push(friendId); // if not in the list then add into the list
       friend.friends.push(id);
     }
     await user.save();

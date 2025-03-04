@@ -1,3 +1,4 @@
+//this  is the template which we can use every components
 // color design tokens export
 export const colorTokens = {
   grey: {

@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+//we can import Box and other compo
 import {
   Box,
   IconButton,
@@ -10,6 +12,8 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+
+//we can also import serch icon,...... etc to  use
 import {
   Search,
   Message,
@@ -20,6 +24,8 @@ import {
   Menu,
   Close,
 } from "@mui/icons-material";
+
+//importing remaining
 import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
@@ -30,20 +36,23 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)"); //media query for pc
 
   const theme = useTheme();
+  //using color from theme.js 
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
+  //assigning fullname 
   const fullName = `${user.firstName} ${user.lastName}`;
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
+        {/* //for logo */}
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
@@ -58,6 +67,8 @@ const Navbar = () => {
         >
           Sociopedia
         </Typography>
+
+        {/* //for pc screen , there will be serch bar  */}
         {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}
@@ -76,6 +87,7 @@ const Navbar = () => {
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
+          {/* //setting dark/light mode */}
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
@@ -86,6 +98,8 @@ const Navbar = () => {
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
+
+          {/* //showing name of the particular login user  */}
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -131,7 +145,7 @@ const Navbar = () => {
           minWidth="300px"
           backgroundColor={background}
         >
-          {/* CLOSE ICON */}
+          {/* CLOSE ICON : it can be seenon mob view */}  
           <Box display="flex" justifyContent="flex-end" p="1rem">
             <IconButton
               onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
@@ -158,12 +172,20 @@ const Navbar = () => {
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />
               )}
             </IconButton>
+
+            //for Message
             <Message sx={{ fontSize: "25px" }} />
+            //for Notifications
             <Notifications sx={{ fontSize: "25px" }} />
+            //for help 
             <Help sx={{ fontSize: "25px" }} />
+
+            //showing Name into  the profile
             <FormControl variant="standard" value={fullName}>
+              //dropdown to see options
               <Select
                 value={fullName}
+                //giving some css property 
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
@@ -179,9 +201,11 @@ const Navbar = () => {
                 }}
                 input={<InputBase />}
               >
+                //showing full name 
                 <MenuItem value={fullName}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
+                //showing logout
                 <MenuItem onClick={() => dispatch(setLogout())}>
                   Log Out
                 </MenuItem>

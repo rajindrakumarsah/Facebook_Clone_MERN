@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//this is  the schema for doing post
 const postSchema = mongoose.Schema(
   {
     userId: {
@@ -18,6 +19,8 @@ const postSchema = mongoose.Schema(
     description: String,
     picturePath: String,
     userPicturePath: String,
+
+    // is going to be Object , we use Map for that
     likes: {
       type: Map,
       of: Boolean,

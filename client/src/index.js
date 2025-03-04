@@ -2,9 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+
+//the below code is statement management tool (redux toolkit)
+//importing reducer funtion
 import authReducer from "./state";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+//if they want to import reduxpersist
 import {
   persistStore,
   persistReducer,
@@ -18,6 +22,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
+//reassign
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
@@ -25,7 +30,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
